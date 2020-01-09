@@ -63,6 +63,7 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
+    
   config.vm.provision "shell", inline: <<-SHELL
     # install kubectl
 	apt-get install -y apt-transport-https
@@ -90,4 +91,6 @@ Vagrant.configure("2") do |config|
 	groupadd docker
 	usermod -aG docker $USER
   SHELL
+  
+  config.vm.synced_folder "kubeconfig/", "/home/vagrant/.kube", mount_options: ["dmode=700,fmode=600"]
 end
