@@ -3,7 +3,9 @@ $source_dir_kube = "~\.kube\"
 $target_dir = ".\kubeconfig\"
 
 Write-Host -ForegroundColor Yellow "starting minikube..."
-minikube start --extra-config=apiserver.runtime-config=settings.k8s.io/v1alpha1=true --extra-config=apiserver.enable-admission-plugins=NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,NodeRestriction,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota,PodPreset
+minikube start `
+				--extra-config=apiserver.runtime-config=settings.k8s.io/v1alpha1=true `
+				--extra-config=apiserver.enable-admission-plugins=NamespaceLifecycle,LimitRanger,ServiceAccount,DefaultStorageClass,DefaultTolerationSeconds,NodeRestriction,MutatingAdmissionWebhook,ValidatingAdmissionWebhook,ResourceQuota,PodPreset,PodSecurityPolicy
 
 Write-Host -ForegroundColor Yellow "creating required directory..."
 If (-not (Test-Path $target_dir)) {
